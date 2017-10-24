@@ -21,29 +21,31 @@ import datetime
 import math
 
 
-def number_factors(num:int):
+def number_factors(num: int):
     factors = 0
     for i in range(1, int(math.sqrt(num))):
-        if num%i == 0:
+        if num % i == 0:
             factors += 2
     return factors
+
 
 start_time = datetime.datetime.now()
 
 # Actual code
-starting_number = 10**3
+starting_number = 10 ** 3
 number = starting_number
 
 limit = 500
 
 while True:
-    if number_factors((number*(number+1))/2) >= limit:
+    if number_factors((number * (number + 1)) / 2) >= limit:
         break
     number += 1
 
-
-
 # End actual code
 end_time = datetime.datetime.now()
-print(f'Triangle Number with more than {limit} factors is the {number} Triangle Number ({(number*(number+1))/2}) with exactly {number_factors((number*(number+1))/2)} ({(end_time - start_time)})')
+print(
+    f'Triangle Number with more than {limit} factors is the {number} Triangle Number ({(number*(number+1))/2})'
+    f'with exactly {number_factors((number*(number+1))/2)} ({(end_time - start_time)})'
+)
 # Triangle Number with more than 500 factors is the 12375 Triangle Number (76576500.0) with exactly 576 (0:00:04.260270)
