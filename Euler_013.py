@@ -1,7 +1,7 @@
 '''
 Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 
-37107287533902102798797998220837590246510135740250
+37107287533902102798797998220837590246510135742050
 46376937677490009712648124896970078050417018260538
 74324986199524741059474233309513058123726617309629
 91942213363574161572522430563301811072406154908250
@@ -103,3 +103,23 @@ Work out the first ten digits of the sum of the following one-hundred 50-digit n
 53503534226472524250874054075591789781264330331690
 
 '''
+
+import datetime
+
+start_time = datetime.datetime.now()
+
+# Actual code
+numbers = list()
+with open('Numbers_13.txt') as file:
+    for line in file:
+        # numbers.append(int(line[-11:]))
+        numbers.append(int(line))
+
+print(numbers)
+
+sum_10 = str(sum(numbers))[:10]
+
+# End actual code
+end_time = datetime.datetime.now()
+print(f'First 10 Digits of the sum are {sum_10}  ({(end_time - start_time)})')
+# First 10 Digits of the sum are 5537376230  (0:00:00.006998)
