@@ -13,16 +13,46 @@ How many such routes are there through a 20×20 grid?
 
 import datetime
 
-import functools
-
 start_time = datetime.datetime.now()
 
 # Actual code
-grid_size = 3
+stored_routes = dict()
+grid_size = 20
 
-max_moves = functools.reduce(lambda x, y: x * y, [2 * i + 1 for i in range(1, grid_size)], 2)
+
+def routes(size: (int, int)) -> int:
+    s_size = (min(size), max(size))
+    n, m = s_size
+
+    # Negative Value
+    if n < 0:
+        raise ValueError
+
+    if s_size in stored_routes:
+        return stored_routes[s_size]
+
+    # No Field
+    if n == m == 0:
+        return 0
+
+    # Just a Line
+    if n == 0:
+        return 1
+
+    # Simple narrow Field
+    if n == 1:
+        return m + 1
+
+    # Quadratic Field
+    if n == m:
+        return sum([routes((n - i, i)) ** 2 for i in range(n + 1)])
+    
+    return sum([routes((n-i, i)) * routes((i, m-i)) for i in range(n + 1)])
+
+
+max_moves = routes((grid_size, grid_size))
 
 # End actual code
 end_time = datetime.datetime.now()
 print(f'There are {max_moves} routes for a grid of size {grid_size}x{grid_size} ({(end_time - start_time)})')
-# There are 26226140915375977206881250 routes for a grid of size 20x20 (0:00:00)
+# There are 137846528820 routes for a grid of size 20x20 (0:00:00.006998)
