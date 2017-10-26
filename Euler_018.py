@@ -34,14 +34,37 @@ import datetime
 start_time = datetime.datetime.now()
 
 # Actual code
-max_total = 0
-
 triangle = list()
 with open('Numbers_18.txt') as file:
     for line in file:
         triangle.append(list(map(lambda x: int(x), str(line).split(' '))))
 
+
+def max_route(triangle) -> int:
+    if len(triangle) == 1:
+        return triangle[0][0]
+
+    return triangle[0][0] + max(max_route(left_sub_triangle(triangle)), max_route(right_sub_triangle(triangle)))
+
+
+def left_sub_triangle(triangle):
+    sub_triangle = list()
+    for row in triangle[1:]:
+        sub_triangle.append(row[:-1])
+    return sub_triangle
+
+
+def right_sub_triangle(triangle):
+    sub_triangle = list()
+    for row in triangle[1:]:
+        sub_triangle.append(row[1:])
+    return sub_triangle
+
+
 print(triangle)
+print(left_sub_triangle(triangle))
+print(right_sub_triangle(triangle))
+max_total = max_route(triangle)
 
 # End actual code
 end_time = datetime.datetime.now()
