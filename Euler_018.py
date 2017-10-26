@@ -61,12 +61,10 @@ def right_sub_triangle(triangle):
     return sub_triangle
 
 
-print(triangle)
-print(left_sub_triangle(triangle))
-print(right_sub_triangle(triangle))
 max_total = max_route(triangle)
 
 # End actual code
 end_time = datetime.datetime.now()
 print(f'Maximum Total from top to bottom is {max_total} ({(end_time - start_time)})')
-# There sum of the digits of 2^1000 is 1366 from ... (0:00:00.000999)
+# Maximum Total from top to bottom is 1074 (0:00:00.027598)
+
