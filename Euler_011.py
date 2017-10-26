@@ -94,5 +94,5 @@ for o in range(length - 1, size):
 
 # End actual code
 end_time = datetime.datetime.now()
-print(f'Maximum Sum of Numbers in Grid is {max_product} with length of {length} ({(end_time - start_time)})')
+print(f'Maximum Product of Numbers in Grid is {max_product} with length of {length} ({(end_time - start_time)})')
 # Maximum Sum of Numbers in Grid is 51267216 with length of 4 (0:00:00.005513)
