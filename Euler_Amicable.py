@@ -13,15 +13,17 @@ cache_sum_proper_divisors = dict()
 cache_number_form = dict()
 
 
-def proper_divisors(number: int) -> int:
-    yield 1
+def proper_divisors(number: int):
+    divisors = set()
+    divisors.add(1)
     square_root = int(number ** 0.5)
     if number % square_root == 0:
-        yield square_root
+        divisors.add(square_root)
     for i in range(2, square_root + 1):
         if number % i == 0:
-            yield i
-            yield int(number / i)
+            divisors.add(i)
+            divisors.add(int(number / i))
+    return divisors
 
 
 def sum_proper_divisors(number: int) -> int:

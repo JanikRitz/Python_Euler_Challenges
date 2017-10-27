@@ -12,17 +12,25 @@ import datetime
 
 import itertools
 
+from Euler_Amicable import number_form, NumberForm, proper_divisors
+
 start_time = datetime.datetime.now()
 
 # Actual code
 min_test = 24
 max_test = 28123
 
+abundant_numbers = list(filter(lambda x: number_form(x) == NumberForm.ABUNDANT, range(3, min_test)))
+
 
 def has_abundant_sum(number: int) -> bool:
+    if number_form(number) == NumberForm.ABUNDANT:
+        abundant_numbers.append(abundant_numbers)
+    if number in map(lambda x: x[0]+x[1], itertools.combinations(abundant_numbers, 2)):
+        return True
     return False
 
-
+print(list(map(lambda x: x,itertools.combinations(abundant_numbers, 2))))
 total = sum(itertools.filterfalse(has_abundant_sum, range(min_test, max_test + 1)))
 
 # End actual code
