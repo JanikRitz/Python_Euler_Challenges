@@ -10,12 +10,23 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
 import datetime
 
+import itertools
+
 start_time = datetime.datetime.now()
 
 # Actual code
-total = 0
+min_test = 24
+max_test = 28123
+
+
+def has_abundant_sum(number: int) -> bool:
+    return False
+
+
+total = sum(itertools.filterfalse(has_abundant_sum, range(min_test, max_test + 1)))
 
 # End actual code
 end_time = datetime.datetime.now()
-print(f'The sum of all the positive integers which cannot be written as the sum of two abundant numbers is {total} ({(end_time - start_time)})')
+print(f'The sum of all the positive integers which cannot'
+      f'be written as the sum of two abundant numbers is {total} ({(end_time - start_time)})')
 # The total of all the name scores is 871198282 (0:00:00.017000)
