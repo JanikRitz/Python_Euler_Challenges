@@ -22,4 +22,4 @@ sum_amicable = sum(amicable_pairs)
 # End actual code
 end_time = datetime.datetime.now()
 print(f'The sum of all amicable numbers below {max_value} is {sum_amicable} ({(end_time - start_time)})')
-# The sum of all amicable numbers below 10000 is 0 (0:00:00)
+# The sum of all amicable numbers below 10000 is 31626 (0:00:00.164997)
