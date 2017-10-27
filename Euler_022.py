@@ -7,13 +7,31 @@ What is the total of all the name scores in the file?
 '''
 
 import datetime
+import string
 
 start_time = datetime.datetime.now()
 
 # Actual code
-total = 0
+names = list()
+rating = dict()
+for i, c in enumerate(string.ascii_uppercase):
+    rating[c] = i + 1
+
+with open('Names_22.txt') as file:
+    for line in file:
+        names.extend([n.split('"')[1] for n in line.split(',')])
+
+names = sorted(names)
+
+
+def value_name(name: str):
+    m = map(lambda x: rating[x], name)
+    return sum(m)
+
+
+total = sum(map(lambda x, y: value_name(x) * y, names, range(1, len(names) + 1)))
 
 # End actual code
 end_time = datetime.datetime.now()
 print(f'The total of all the name scores is {total} ({(end_time - start_time)})')
-# The sum of all amicable numbers below 10000 is 0 (0:00:00)
+# The total of all the name scores is 871198282 (0:00:00.017000)
