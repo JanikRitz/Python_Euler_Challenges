@@ -7,6 +7,7 @@ Let d(n) be defined as the sum of proper divisors of n (numbers less than n whic
 If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
 
 '''
+from enum import Enum
 
 cache_sum_proper_divisors = dict()
 
@@ -27,6 +28,20 @@ def sum_proper_divisors(number: int) -> int:
         return cache_sum_proper_divisors[number]
     cache_sum_proper_divisors[number] = sum(proper_divisors(number))
     return cache_sum_proper_divisors[number]
+
+
+class NumberForm(Enum):
+    PERFECT = 0
+    DEFICIENT = -1
+    ABUNDANT = 1
+
+
+def number_form(number: int):
+    if number == sum_proper_divisors(number):
+        return NumberForm.PERFECT
+    if number > sum_proper_divisors(number):
+        return NumberForm.DEFICIENT
+    return NumberForm.ABUNDANT
 
 
 def amicable(numbers: (int, int)) -> bool:
