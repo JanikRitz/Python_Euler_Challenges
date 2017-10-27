@@ -10,6 +10,7 @@ If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and e
 from enum import Enum
 
 cache_sum_proper_divisors = dict()
+cache_number_form = dict()
 
 
 def proper_divisors(number: int) -> int:
@@ -37,11 +38,15 @@ class NumberForm(Enum):
 
 
 def number_form(number: int):
-    if number == sum_proper_divisors(number):
-        return NumberForm.PERFECT
-    if number > sum_proper_divisors(number):
-        return NumberForm.DEFICIENT
-    return NumberForm.ABUNDANT
+    if number in cache_number_form:
+        return cache_number_form[number]
+    elif number == sum_proper_divisors(number):
+        cache_number_form[number] = NumberForm.PERFECT
+    elif number > sum_proper_divisors(number):
+        cache_number_form[number] = NumberForm.DEFICIENT
+    else:
+        cache_number_form[number] = NumberForm.ABUNDANT
+    return cache_number_form[number]
 
 
 def amicable(numbers: (int, int)) -> bool:
