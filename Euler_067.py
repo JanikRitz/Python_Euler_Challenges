@@ -15,44 +15,17 @@ NOTE: This is a much more difficult version of Problem 18. It is not possible to
 
 import datetime
 
+from Euler_Triangle import max_route
+
 start_time = datetime.datetime.now()
 
 # Actual code
 triangle = list()
-max_routes = dict()
 with open('Numbers_67.txt') as file:
     for line in file:
         triangle.append(tuple(map(lambda x: int(x), str(line).split(' '))))
 
 triangle = tuple(triangle)
-
-def max_route(triangle) -> int:
-    if len(triangle) == 1:
-        return triangle[0][0]
-
-    if triangle in max_routes:
-        return max_routes[triangle]
-
-    left = max_route(left_sub_triangle(triangle))
-    right = max_route(right_sub_triangle(triangle))
-    max_routes[triangle] = triangle[0][0] + max(left, right)
-
-    return max_routes[triangle]
-
-
-def left_sub_triangle(triangle):
-    sub_triangle = list()
-    for row in triangle[1:]:
-        sub_triangle.append(row[:-1])
-    return tuple(sub_triangle)
-
-
-def right_sub_triangle(triangle):
-    sub_triangle = list()
-    for row in triangle[1:]:
-        sub_triangle.append(row[1:])
-    return tuple(sub_triangle)
-
 
 max_total = max_route(triangle)
 
