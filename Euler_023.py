@@ -17,24 +17,27 @@ from Euler_Amicable import number_form, NumberForm, proper_divisors
 start_time = datetime.datetime.now()
 
 # Actual code
-min_test = 24
+min_test = 0
 max_test = 28123
 
-abundant_numbers = list(filter(lambda x: number_form(x) == NumberForm.ABUNDANT, range(3, min_test)))
 
+# max_test = 28123
 
 def has_abundant_sum(number: int) -> bool:
     if number_form(number) == NumberForm.ABUNDANT:
-        abundant_numbers.append(abundant_numbers)
-    if number in map(lambda x: x[0]+x[1], itertools.combinations(abundant_numbers, 2)):
+        abundant_numbers.append(number)
+    if number in map(lambda x: x[0] + x[1], itertools.combinations(abundant_numbers, 2)):
         return True
     return False
 
-print(list(map(lambda x: x,itertools.combinations(abundant_numbers, 2))))
-total = sum(itertools.filterfalse(has_abundant_sum, range(min_test, max_test + 1)))
+
+abundant_numbers = list(filter(lambda x: number_form(x) == NumberForm.ABUNDANT, range(3, max_test)))
+possible_sums = set(map(lambda x: x[0] + x[1], itertools.combinations(abundant_numbers, 2)))
+no_abundant_sum = list(itertools.filterfalse(lambda x: x in possible_sums, range(min_test, max_test + 1)))
+total = sum(no_abundant_sum)
 
 # End actual code
 end_time = datetime.datetime.now()
-print(f'The sum of all the positive integers which cannot'
-      f'be written as the sum of two abundant numbers is {total} ({(end_time - start_time)})')
+print(f'The sum of all the positive integers (smaller than {max_test+1}) which cannot'
+      f' be written as the sum of two abundant numbers is {total} ({(end_time - start_time)})')
 # The total of all the name scores is 871198282 (0:00:00.017000)
