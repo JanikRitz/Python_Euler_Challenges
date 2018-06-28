@@ -17,10 +17,15 @@ import datetime
 start_time = datetime.datetime.now()
 
 # Actual code
-result = "Result"
+size = 1001
+# 01
+# 4*(3^2) - 6*(3-1) = 24
+# 4*(5^2) - 6*(5-1) = 76
+
+sum_diagonals = 1 + sum(map(lambda n: 4 * n ** 2 - 6 * (n - 1), range(3, size + 1, 2)))
 
 # End actual code
 end_time = datetime.datetime.now()
 
-print(f'Result is {result} ({(end_time - start_time)})')
+print(f'Sum of diagonals is {sum_diagonals} in a square of size {size}x{size} ({(end_time - start_time)})')
 # Result
