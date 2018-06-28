@@ -28,4 +28,4 @@ sum_diagonals = 1 + sum(map(lambda n: 4 * n ** 2 - 6 * (n - 1), range(3, size + 
 end_time = datetime.datetime.now()
 
 print(f'Sum of diagonals is {sum_diagonals} in a square of size {size}x{size} ({(end_time - start_time)})')
-# Result
+# Sum of diagonals is 669171001 in a square of size 1001x1001 (0:00:00)
