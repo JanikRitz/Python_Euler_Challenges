@@ -19,4 +19,4 @@ millionth_permutation = list(permutations)[10 ** 6 - 1]
 end_time = datetime.datetime.now()
 
 print(f'Millionth Permutation is {"".join(map(str, millionth_permutation))} ({(end_time - start_time)})')
-# Result
+# Millionth Permutation is 2783915460 (0:00:01.092014)
