@@ -28,8 +28,24 @@ start_time = datetime.datetime.now()
 # Actual code
 index = 0
 
+
+def fib():
+    yield 1
+    yield 1
+    fib_1 = 1
+    fib_2 = 1
+    while True:
+        fib_1, fib_2 = fib_2, fib_1 + fib_2
+        yield fib_2
+
+
+for index, fibonacci in enumerate(fib()):
+    if len(str(fibonacci)) == 1000:
+        index += 1
+        break
+
 # End actual code
 end_time = datetime.datetime.now()
 
 print(f'Index of first Fibonacci with 1000 digits is {index} ({(end_time - start_time)})')
-# Result
+# Index of first Fibonacci with 1000 digits is 4782 (0:00:00.049318)
