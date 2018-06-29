@@ -16,14 +16,50 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 '''
 
 import datetime
+import itertools
+
+from caching import Cache
+from tqdm import tqdm
 
 start_time = datetime.datetime.now()
 
 # Actual code
 result = "Result"
 
+
+def chain(a: int, b: int):
+    def quadratic(n):
+        return n ** 2 + a * n + b
+
+    for n in range(10 ** 10):
+        if not is_prime(quadratic(n)):
+            return n
+    return 0
+
+
+@Cache(maxsize=-1)
+def is_prime(number):
+    if number % 2 == 0 or number == 1:
+        return False
+    for test in range(3, int(number / 2), 2):
+        if number % test == 0:
+            return False
+    return True
+
+
+a_max = 1000
+b_max = 1000
+
+chains = map(lambda x: (chain(x[0], x[1]), x[0], x[1]),
+             itertools.product(range(-a_max, a_max), range(-b_max - 1, b_max + 1)))
+max_chain = (0, 0, 0)
+for test_chain in tqdm(chains, total=a_max * b_max * 4):
+    if test_chain[0] > max_chain[0]: max_chain = test_chain
+
+# key=lambda element: element[2])
+print(max_chain)
 # End actual code
 end_time = datetime.datetime.now()
 
-print(f'Result is {result} ({(end_time - start_time)})')
+print(f'Result is {chain(1, 41)} ({(end_time - start_time)})')
 # Result
